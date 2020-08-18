@@ -11,21 +11,17 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Roles', [{
-        role_name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'hunter',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }], {});
+    await queryInterface.bulkInsert('Certificates', [{
+      ProfileId: 1,
+      title: "Convolutional Neural Networks",
+      published_by: "Coursera",
+      period_begin: "December 2019",
+      period_end: "June 2023",
+      certificate_number: "Credential ID KERZR822QPYV",
+      certificate_link: "Credential ID KERZR822QPYV",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +31,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Roles', null, {});
+    await queryInterface.bulkDelete('Certificates', null, {});
   }
 };

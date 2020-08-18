@@ -11,21 +11,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Roles', [{
-        role_name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'hunter',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }], {});
+    await queryInterface.bulkInsert('Skills', [{
+      ProfileId: 1,
+      skill_name: "SQL",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      ProfileId: 1,
+      skill_name: "Python",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +32,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Roles', null, {});
+    await queryInterface.bulkDelete('Skills', null, {});
   }
 };

@@ -11,15 +11,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Profiles', [{
-      UserId: 1,
-      name: "sad sad",
-      city: "sad",
-      country: "sad",
-      education: "SMA",
-      phoneNumber: "+6289012345678",
-      email: "demo@demo.com",
-      about: "about",
+    await queryInterface.bulkInsert('OrgExperiences', [{
+      ProfileId: 1,
+      title: "Unit Kesenian Mahasiswa Universitas Negeri Jakarta",
+      at: "Daily Staff",
+      period_begin: "December 2015",
+      period_end: "July 2019",
+      description: "I'm oftenly volunteered to be part of a crew in many events that held by this organization.",
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
@@ -32,6 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Profiles', null, {});
+    await queryInterface.bulkDelete('OrgExperiences', null, {});
   }
 };

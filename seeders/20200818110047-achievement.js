@@ -11,21 +11,15 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Roles', [{
-        role_name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'hunter',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }], {});
+    await queryInterface.bulkInsert('Achievements', [{
+      ProfileId: 1,
+      title: "Festival Teater Jakarta Timur",
+      subtitle: "1st Winner of 'Naskah Terbaik'",
+      period: "2019",
+      description: "Created a theatrical play scenario that placed 1st as the best play scenario, representating Castra Mardika Theatre Group.",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Roles', null, {});
+    await queryInterface.bulkDelete('Achievements', null, {});
   }
 };

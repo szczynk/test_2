@@ -11,21 +11,20 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Roles', [{
-        role_name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'hunter',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        role_name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }], {});
+    await queryInterface.bulkInsert('SocialLinks', [{
+      ProfileId: 1,
+      title: "Github",
+      link: "https://github.com/Ilham-Fauzi02",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      ProfileId: 1,
+      title: "Linkedin",
+      link: "https://www.linkedin.com/in/ilham--fauzi02/",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }], {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -35,6 +34,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Roles', null, {});
+    await queryInterface.bulkDelete('SocialLinks', null, {});
   }
 };
