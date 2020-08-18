@@ -40,6 +40,31 @@ module.exports = (sequelize, DataTypes) => {
         Profile.hasMany(models.OrgExperience, {
             onDelete: 'CASCADE'       
         });
+        //Education
+        Profile.hasMany(models.Education, {
+            onDelete: 'CASCADE'       
+        });
+        //Skill
+        Profile.hasMany(models.Skill, {
+            onDelete: 'CASCADE'       
+        });
+        //Certificate
+        Profile.hasMany(models.Certificate, {
+            onDelete: 'CASCADE'       
+        });
+        //Achievement
+        Profile.hasMany(models.Achievement, {
+            onDelete: 'CASCADE'       
+        });
+        //Social Link
+        Profile.hasMany(models.SocialLink, {
+            onDelete: 'CASCADE'       
+        });
+        //Social Link
+        Profile.hasMany(models.Attachment, {
+            onDelete: 'CASCADE'       
+        });
+        
     };  
 
   return Profile;

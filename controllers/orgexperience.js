@@ -60,7 +60,7 @@ module.exports = {
         }
         return OrgExperience
           .update({
-            title: req.body.title || orgexp.name,
+            title: req.body.title || orgexp.title,
             at: req.body.at || orgexp.at,
             period_begin: req.body.period_begin || orgexp.period_begin,
             period_end: req.body.period_end || orgexp.period_end,

@@ -1,87 +1,81 @@
 const Profile = require('../models').Profile;
-const WorkExperience = require('../models').WorkExperience;
+const SocialLink = require('../models').SocialLink;
 
 module.exports = {
   list(req, res) {
-    return WorkExperience
+    return SocialLink
       .findAll({
         include: [{
           model: Profile,
         }],
       })
-      .then((workexps) => res.status(200).send(workexps))
+      .then((links) => res.status(200).send(links))
       .catch((error) => { res.status(400).send(error); });
   },
 
   getById(req, res) {
-    return WorkExperience
+    return SocialLink
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then((workexp) => {
-        if (!workexp) {
+      .then((link) => {
+        if (!link) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'link Not Found',
           });
         }
-        return res.status(200).send(workexp);
+        return res.status(200).send(link);
       })
       .catch((error) => res.status(400).send(error));
   },
 
   add(req, res) {
-    return WorkExperience
+    return SocialLink
       .create({
         ProfileId: req.body.ProfileId,
         title: req.body.title,
-        at: req.body.at,
-        period_begin: req.body.period_begin,
-        period_end: req.body.period_end,
-        description: req.body.description
+        link: req.body.link
       })
-      .then((workexp) => res.status(201).send(workexp))
+      .then((link) => res.status(201).send(link))
       .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
-    return WorkExperience
+    return SocialLink
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then(workexp => {
-        if (!workexp) {
+      .then(link => {
+        if (!link) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'link Not Found',
           });
         }
-        return WorkExperience
+        return SocialLink
           .update({
-            title: req.body.title || workexp.title,
-            at: req.body.at || workexp.at,
-            period_begin: req.body.period_begin || workexp.period_begin,
-            period_end: req.body.period_end || workexp.period_end,
-            description: req.body.description || workexp.description
+            title: req.body.title || link.title,
+            link: req.body.link || link.link
           })
-          .then(() => res.status(200).send(workexp))
+          .then(() => res.status(200).send(link))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
   },
 
   delete(req, res) {
-    return WorkExperience
+    return SocialLink
       .findByPk(req.params.id)
-      .then(workexp => {
-        if (!workexp) {
+      .then(link => {
+        if (!link) {
           return res.status(400).send({
-            message: 'workexp Not Found',
+            message: 'link Not Found',
           });
         }
-        return WorkExperience
+        return SocialLink
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));

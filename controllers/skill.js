@@ -1,87 +1,79 @@
 const Profile = require('../models').Profile;
-const WorkExperience = require('../models').WorkExperience;
+const Skill = require('../models').Skill;
 
 module.exports = {
   list(req, res) {
-    return WorkExperience
+    return Skill
       .findAll({
         include: [{
           model: Profile,
         }],
       })
-      .then((workexps) => res.status(200).send(workexps))
+      .then((skills) => res.status(200).send(skills))
       .catch((error) => { res.status(400).send(error); });
   },
 
   getById(req, res) {
-    return WorkExperience
+    return Skill
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then((workexp) => {
-        if (!workexp) {
+      .then((skill) => {
+        if (!skill) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'skill Not Found',
           });
         }
-        return res.status(200).send(workexp);
+        return res.status(200).send(skill);
       })
       .catch((error) => res.status(400).send(error));
   },
 
   add(req, res) {
-    return WorkExperience
+    return Skill
       .create({
         ProfileId: req.body.ProfileId,
-        title: req.body.title,
-        at: req.body.at,
-        period_begin: req.body.period_begin,
-        period_end: req.body.period_end,
-        description: req.body.description
+        skill_name: req.body.skill_name
       })
-      .then((workexp) => res.status(201).send(workexp))
+      .then((skill) => res.status(201).send(skill))
       .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
-    return WorkExperience
+    return Skill
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then(workexp => {
-        if (!workexp) {
+      .then(skill => {
+        if (!skill) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'skill Not Found',
           });
         }
-        return WorkExperience
+        return Skill
           .update({
-            title: req.body.title || workexp.title,
-            at: req.body.at || workexp.at,
-            period_begin: req.body.period_begin || workexp.period_begin,
-            period_end: req.body.period_end || workexp.period_end,
-            description: req.body.description || workexp.description
+            skill_name: req.body.skill_name || skill.skill_name
           })
-          .then(() => res.status(200).send(workexp))
+          .then(() => res.status(200).send(skill))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
   },
 
   delete(req, res) {
-    return WorkExperience
+    return Skill
       .findByPk(req.params.id)
-      .then(workexp => {
-        if (!workexp) {
+      .then(skill => {
+        if (!skill) {
           return res.status(400).send({
-            message: 'workexp Not Found',
+            message: 'skill Not Found',
           });
         }
-        return WorkExperience
+        return Skill
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));

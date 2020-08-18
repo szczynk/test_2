@@ -2,7 +2,12 @@ const Profile = require('../models').Profile;
 const User = require('../models').User;
 const WorkExperience = require('../models').WorkExperience;
 const OrgExperience = require('../models').OrgExperience;
-
+const Education = require('../models').Education;
+const Skill = require('../models').Skill;
+const Certificate = require('../models').Certificate;
+const Achievement = require('../models').Achievement;
+const SocialLink = require('../models').SocialLink;
+const Attachment = require('../models').Attachment;
 
 
 module.exports = {
@@ -14,6 +19,27 @@ module.exports = {
         },
         {
           model: WorkExperience
+        },
+        {
+          model: OrgExperience
+        },
+        {
+          model: Education
+        },
+        {
+          model: Skill
+        },
+        {
+          model: Certificate
+        },
+        {
+          model: Achievement
+        },
+        {
+          model: SocialLink
+        },
+        {
+          model: Attachment
         }],
       })
       .then((profiles) => res.status(200).send(profiles))
@@ -28,6 +54,27 @@ module.exports = {
         },
         {
           model: WorkExperience
+        },
+        {
+          model: OrgExperience
+        },
+        {
+          model: Education
+        },
+        {
+          model: Skill
+        },
+        {
+          model: Certificate
+        },
+        {
+          model: Achievement
+        },
+        {
+          model: SocialLink
+        },
+        {
+          model: Attachment
         }],
       })
       .then((profile) => {
@@ -65,6 +112,27 @@ module.exports = {
         },
         {
           model: WorkExperience
+        },
+        {
+          model: OrgExperience
+        },
+        {
+          model: Education
+        },
+        {
+          model: Skill
+        },
+        {
+          model: Certificate
+        },
+        {
+          model: Achievement
+        },
+        {
+          model: SocialLink
+        },
+        {
+          model: Attachment
         }],
       })
       .then(profile => {

@@ -1,87 +1,83 @@
 const Profile = require('../models').Profile;
-const WorkExperience = require('../models').WorkExperience;
+const Attachment = require('../models').Attachment;
 
 module.exports = {
   list(req, res) {
-    return WorkExperience
+    return Attachment
       .findAll({
         include: [{
           model: Profile,
         }],
       })
-      .then((workexps) => res.status(200).send(workexps))
+      .then((attachs) => res.status(200).send(attachs))
       .catch((error) => { res.status(400).send(error); });
   },
 
   getById(req, res) {
-    return WorkExperience
+    return Attachment
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then((workexp) => {
-        if (!workexp) {
+      .then((attach) => {
+        if (!attach) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'attach Not Found',
           });
         }
-        return res.status(200).send(workexp);
+        return res.status(200).send(attach);
       })
       .catch((error) => res.status(400).send(error));
   },
 
   add(req, res) {
-    return WorkExperience
+    return Attachment
       .create({
         ProfileId: req.body.ProfileId,
-        title: req.body.title,
-        at: req.body.at,
-        period_begin: req.body.period_begin,
-        period_end: req.body.period_end,
-        description: req.body.description
+        name: req.body.name,
+        type: req.body.type,
+        data: req.body.data
       })
-      .then((workexp) => res.status(201).send(workexp))
+      .then((attach) => res.status(201).send(attach))
       .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
-    return WorkExperience
+    return Attachment
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then(workexp => {
-        if (!workexp) {
+      .then(attach => {
+        if (!attach) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'attach Not Found',
           });
         }
-        return WorkExperience
+        return Attachment
           .update({
-            title: req.body.title || workexp.title,
-            at: req.body.at || workexp.at,
-            period_begin: req.body.period_begin || workexp.period_begin,
-            period_end: req.body.period_end || workexp.period_end,
-            description: req.body.description || workexp.description
+            name: req.body.name || attach.name,
+            type: req.body.type || attach.type,
+            data: req.body.data || attach.data
           })
-          .then(() => res.status(200).send(workexp))
+          .then(() => res.status(200).send(attach))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
   },
 
   delete(req, res) {
-    return WorkExperience
+    return Attachment
       .findByPk(req.params.id)
-      .then(workexp => {
-        if (!workexp) {
+      .then(attach => {
+        if (!attach) {
           return res.status(400).send({
-            message: 'workexp Not Found',
+            message: 'attach Not Found',
           });
         }
-        return WorkExperience
+        return Attachment
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));

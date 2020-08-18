@@ -1,87 +1,85 @@
 const Profile = require('../models').Profile;
-const WorkExperience = require('../models').WorkExperience;
+const Achievement = require('../models').Achievement;
 
 module.exports = {
   list(req, res) {
-    return WorkExperience
+    return Achievement
       .findAll({
         include: [{
           model: Profile,
         }],
       })
-      .then((workexps) => res.status(200).send(workexps))
+      .then((achieves) => res.status(200).send(achieves))
       .catch((error) => { res.status(400).send(error); });
   },
 
   getById(req, res) {
-    return WorkExperience
+    return Achievement
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then((workexp) => {
-        if (!workexp) {
+      .then((achieve) => {
+        if (!achieve) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'achieve Not Found',
           });
         }
-        return res.status(200).send(workexp);
+        return res.status(200).send(achieve);
       })
       .catch((error) => res.status(400).send(error));
   },
 
   add(req, res) {
-    return WorkExperience
+    return Achievement
       .create({
         ProfileId: req.body.ProfileId,
         title: req.body.title,
-        at: req.body.at,
-        period_begin: req.body.period_begin,
-        period_end: req.body.period_end,
+        subtitle: req.body.subtitle,
+        period: req.body.period,
         description: req.body.description
       })
-      .then((workexp) => res.status(201).send(workexp))
+      .then((achieve) => res.status(201).send(achieve))
       .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
-    return WorkExperience
+    return Achievement
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
         }],
       })
-      .then(workexp => {
-        if (!workexp) {
+      .then(achieve => {
+        if (!achieve) {
           return res.status(404).send({
-            message: 'workexp Not Found',
+            message: 'achieve Not Found',
           });
         }
-        return WorkExperience
+        return Achievement
           .update({
-            title: req.body.title || workexp.title,
-            at: req.body.at || workexp.at,
-            period_begin: req.body.period_begin || workexp.period_begin,
-            period_end: req.body.period_end || workexp.period_end,
-            description: req.body.description || workexp.description
+            title: req.body.title || achieve.title,
+            subtitle: req.body.subtitle || achieve.subtitle,
+            period: req.body.period || achieve.period,
+            description: req.body.description || achieve.description
           })
-          .then(() => res.status(200).send(workexp))
+          .then(() => res.status(200).send(achieve))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
   },
 
   delete(req, res) {
-    return WorkExperience
+    return Achievement
       .findByPk(req.params.id)
-      .then(workexp => {
-        if (!workexp) {
+      .then(achieve => {
+        if (!achieve) {
           return res.status(400).send({
-            message: 'workexp Not Found',
+            message: 'achieve Not Found',
           });
         }
-        return WorkExperience
+        return Achievement
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));
