@@ -14,6 +14,9 @@ const achievementController = require('../controllers').achievement;
 const sociallinkController = require('../controllers').sociallink;
 const attachmentController = require('../controllers').attachment;
 
+const recruiterController = require('../controllers').recruiters;
+const jobsController = require('../controllers').jobs;
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -96,6 +99,20 @@ router.get('/api/role/:id', roleController.getById);
 router.post('/api/role', roleController.add);
 router.put('/api/role/:id', roleController.update);
 router.delete('/api/role/:id', roleController.delete);
+
+/* Recruiter Router */
+router.get('/api/recruiter', recruiterController.list);
+router.get('/api/recruiter/:id', recruiterController.getById);
+router.post('/api/recruiter', recruiterController.add);
+router.put('/api/recruiter/:id', recruiterController.update);
+router.delete('/api/recruiter/:id', recruiterController.delete);
+
+/* Jobs Router */
+router.get('/api/jobs', jobsController.list);
+router.get('/api/jobs/:id', jobsController.getById);
+router.post('/api/jobs', jobsController.add);
+router.put('/api/jobs/:id', jobsController.update);
+router.delete('/api/jobs/:id', jobsController.delete);
 
 /* Advance Router */
 router.post('/api/role/add_user', roleController.addUser);
