@@ -1,12 +1,12 @@
-const Recruiters = require('../models').Recruiters;
-const Jobs = require('../models').Jobs;
+const Recruiter = require('../models').Recruiter;
+const Job = require('../models').Job;
 
 module.exports = {
   list(req, res) {
-    return Jobs
+    return Job
       .findAll({
         include: [{
-          model: Recruiters,
+          model: Recruiter,
         }],
       })
       .then((jobs) => res.status(200).send(jobs))
@@ -14,10 +14,10 @@ module.exports = {
   },
 
   getById(req, res) {
-    return Jobs
+    return Job
       .findByPk(req.params.id, {
         include: [{
-          model: Recruiters,
+          model: Recruiter,
         }],
       })
       .then((jobs) => {
@@ -32,9 +32,9 @@ module.exports = {
   },
 
   add(req, res) {
-    return Jobs
+    return Job
       .create({
-        RecruitersId: req.body.RecruitersId,
+        RecruiterId: req.body.RecruiterId,
         title: req.body.title,
         skill: req.body.skill,
         requirements: req.body.requirements,
@@ -46,10 +46,10 @@ module.exports = {
   },
 
   update(req, res) {
-    return Jobs
+    return Job
       .findByPk(req.params.id, {
         include: [{
-          model: Recruiters,
+          model: Recruiter,
         }],
       })
       .then(jobs => {
@@ -58,9 +58,9 @@ module.exports = {
             message: 'Job Not Found',
           });
         }
-        return Jobs
+        return Job
           .update({
-            RecruitersId: req.body.RecruitersId,
+            RecruiterId: req.body.RecruiterId,
             title: req.body.title,
             skill: req.body.skill,
             requirements: req.body.requirements,
@@ -74,15 +74,15 @@ module.exports = {
   },
 
   delete(req, res) {
-    return Jobs
+    return Job
       .findByPk(req.params.id)
       .then(jobs => {
         if (!jobs) {
           return res.status(400).send({
-            message: 'Jobs Not Found',
+            message: 'Job Not Found',
           });
         }
-        return Jobs
+        return Job
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));

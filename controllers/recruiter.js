@@ -1,16 +1,16 @@
 const User = require('../models').User;
-const Jobs = require('../models').Jobs;
-const Recruiters = require('../models').Recruiters;
+const Job = require('../models').Job;
+const Recruiter = require('../models').Recruiter;
 
 module.exports = {
   list(req, res) {
-    return Recruiters
+    return Recruiter
       .findAll({
         include: [{
           model: User,
         },
         {
-          model: Jobs
+          model: Job
         }],
       })
       .then((recruiters) => res.status(200).send(recruiters))
@@ -18,13 +18,13 @@ module.exports = {
   },
 
   getById(req, res) {
-    return Recruiters
+    return Recruiter
       .findByPk(req.params.id, {
         include: [{
           model: User,
         },
         {
-          model: Jobs
+          model: Job
         }],
       })
       .then((recruiters) => {
@@ -58,13 +58,13 @@ module.exports = {
   },
 
   update(req, res) {
-    return Recruiters
+    return Recruiter
       .findByPk(req.params.id, {
         include: [{
           model: User,
         },
         {
-          model: Jobs
+          model: Job
         }],
       })
       .then(recruiters => {
@@ -89,7 +89,7 @@ module.exports = {
   },
 
   delete(req, res) {
-    return Recruiters
+    return Recruiter
       .findByPk(req.params.id)
       .then(recruiters => {
         if (!recruiters) {
