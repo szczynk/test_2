@@ -1,18 +1,15 @@
 # test_2
 
-0. IT'S WORKING MY MAN
-1. terminal -> npm install
-2. ubah config/config.js
-3. terminal -> npm run dev
-4. tolong buat tabel dan api untuk headhunter/hunter/hrd soalnya ternyata banyak
+0. IT'S WORKING MY MAN part 3
+1. check package.json di bagian dependencies dan devDependencies
+2. terminal -> npm install
+3. ubah config/config.js di bagian development
+4. drop test_2 schema on mysql workbench atau phpmyadmin
+5. check app.js apakah db.sequelize.sync({force: true}) atau db.sequelize.sync()?
+6. terminal -> npm run dev
 
-PS. yg ada kata "tambah/add" artinya buat tabel, asosiasi, route dan query yang baru
+PS. bingung masalah query di AppliedJob dan InvitedCandidate karena ada kolom status 
 
-(tabel & asosiasi) -> model
+PSS. sudah ditambah bcrypt untuk register dan login tapi blom tambahin passport.js / token untuk universal register dan login
 
-query -> controller
-
-route -> route
-
-
-PSS. blom tambahin passport.js / token
+PSSS.  blom ada .env karena blom ada secret_key or API_key
