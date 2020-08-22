@@ -20,11 +20,21 @@ module.exports = (sequelize, DataTypes) => {
 
     // define association here
     Jobs.associate = models => {
-        //user-profil
+        //jobs-recruiter
         Jobs.belongsTo(models.Recruiters, {
             foreignKey: {
                 allowNull: false
-            }      
+            }
+        });
+
+        Jobs.belongsToMany(models.Profile, {
+            through: 'SavedJobs',
+            onDelete: 'CASCADE'
+        });
+
+        Jobs.belongsToMany(models.Profile, {
+            through: 'AppliedJobs',
+            onDelete: 'CASCADE'
         });
     };  
 

@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
             through: 'UserRole',
             onDelete: 'CASCADE'
         });
+
+        //user-recruiter
+        User.hasOne(models.Recruiters, {
+            onDelete: 'CASCADE'       
+        });
     };  
 
   return User;

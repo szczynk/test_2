@@ -65,6 +65,29 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'CASCADE'       
         });
         
+        //Profile-SavedCandidate
+        Profile.belongsToMany(models.Recruiters, {
+            through: 'SavedCandidate',
+            onDelete: 'CASCADE'
+        });
+
+        //Profile-InvitedCandidate
+        Profile.belongsToMany(models.Recruiters, {
+            through: 'InvitedCandidate',
+            onDelete: 'CASCADE'
+        });
+
+        //Saved Jobs
+        Profile.belongsToMany(models.Jobs, {
+            through: 'SavedJobs',
+            onDelete: 'CASCADE'
+        });
+
+        //Applied Jobs
+        Profile.belongsToMany(models.Jobs, {
+            through: 'AppliedJobs',
+            onDelete: 'CASCADE'
+        });
     };  
 
   return Profile;

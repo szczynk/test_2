@@ -35,16 +35,28 @@ module.exports = (sequelize, DataTypes) => {
 
     // define association here
     Recruiters.associate = models => {
-        //recruiter-profil
+        //recruiter-user
         Recruiters.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }      
         });
-        //jobs
+        //recruiter-jobs
         Recruiters.hasMany(models.Jobs, {
             onDelete: 'CASCADE'       
         });
+
+        //recruiters-inviteprofile
+        Recruiters.belongsToMany(models.Profile, {
+            through: 'InvitedCandidate',
+            onDelete: 'CASCADE'
+        })
+
+        //recruiters-savedprofile
+        Recruiters.belongsToMany(models.Profile, {
+            through: 'SavedCandidate',
+            onDelete: 'CASCADE'
+        })
     };  
 
   return Recruiters;
