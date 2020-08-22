@@ -11,37 +11,28 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Users', 
+    await queryInterface.bulkInsert('AppliedJobs', 
     [{
-      email: 'user1@user.com',
-      password: '123456',
+      JobId: 1,
+      ProfileId: 1,
+      status: "pending",
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      email: 'user2@user.com',
-      password: '123456',
+      JobId: 3,
+      ProfileId: 3,
+      status: "failed",
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      email: 'user3@user.com',
-      password: '123456',
+      JobId: 4,
+      ProfileId: 2,
+      status: "passed",
       createdAt: new Date(),
       updatedAt: new Date()
-    },
-    {
-      email: 'hunter1@hunter.com',
-      password: '123456',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      email: 'hunter2@hunter.com',
-      password: '123456',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }], {});
+    },], {});
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -51,6 +42,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('AppliedJobs', null, {});
   }
 };

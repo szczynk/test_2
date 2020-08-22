@@ -14,8 +14,12 @@ const achievementController = require('../controllers').achievement;
 const sociallinkController = require('../controllers').sociallink;
 const attachmentController = require('../controllers').attachment;
 
-const recruiterController = require('../controllers').recruiters;
-const jobsController = require('../controllers').jobs;
+const recruiterController = require('../controllers').recruiter;
+const jobController = require('../controllers').job;
+
+const savedjobController = require('../controllers').savedjob;
+
+const savedcandidateController = require('../controllers').savedcandidate;
 
 
 /* GET home page. */
@@ -89,7 +93,8 @@ router.delete('/api/attachment/:id', attachmentController.delete);
 /* User Router */
 router.get('/api/user', userController.list);
 router.get('/api/user/:id', userController.getById);
-router.post('/api/user', userController.add);
+router.post('/api/user/register', userController.register); //Register
+router.post('/api/user/login', userController.login); //Login
 router.put('/api/user/:id', userController.update);
 router.delete('/api/user/:id', userController.delete);
 
@@ -108,11 +113,19 @@ router.put('/api/recruiter/:id', recruiterController.update);
 router.delete('/api/recruiter/:id', recruiterController.delete);
 
 /* Jobs Router */
-router.get('/api/jobs', jobsController.list);
-router.get('/api/jobs/:id', jobsController.getById);
-router.post('/api/jobs', jobsController.add);
-router.put('/api/jobs/:id', jobsController.update);
-router.delete('/api/jobs/:id', jobsController.delete);
+router.get('/api/job', jobController.list);
+router.get('/api/job/:id', jobController.getById);
+router.post('/api/job', jobController.add);
+router.put('/api/job/:id', jobController.update);
+router.delete('/api/job/:id', jobController.delete);
+
+/*Saved Jobs Router */
+router.get('/api/savedjob/list/:ProfileId', savedjobController.list);
+router.get('/api/savedjob/count/:ProfileId', savedjobController.count);
+
+/*Saved Jobs Router */
+router.get('/api/savedcandidate/list/:RecruiterId', savedcandidateController.list);
+router.get('/api/savedcandidate/count/:RecruiterId', savedcandidateController.count);
 
 /* Advance Router */
 router.post('/api/role/add_user', roleController.addUser);

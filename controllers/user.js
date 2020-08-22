@@ -2,6 +2,7 @@ const User = require('../models').User;
 const Profile = require('../models').Profile;
 const Role = require('../models').Role;
 const UserRole = require('../models').UserRole;
+var bcrypt = require("bcrypt");
 
 module.exports = {
   list(req, res) {
@@ -39,13 +40,49 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-  add(req, res) {
+  register(req, res) {
     return User
       .create({
         email: req.body.email,
-        password: req.body.password,
+        password: bcrypt.hashSync(req.body.password, 10)
       })
       .then((user) => res.status(201).send(user))
+      .catch((error) => res.status(400).send(error));
+  },
+
+  login(req, res){
+    return User
+      .findOne({
+        where: {
+          email: req.body.email
+        },
+        include: [{
+          model: Profile,
+        },
+        {
+          model: Role,
+        }]
+      })
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: 'User Not Found',
+          });
+        };
+        
+        isPasswordValid = bcrypt.compareSync(
+          req.body.password,
+          user.password
+        );
+
+        if (!isPasswordValid) {
+          return res.status(401).send({
+            message: "Invalid Password!"
+          });
+        };
+
+        return res.status(200).send(user);
+      })
       .catch((error) => res.status(400).send(error));
   },
 

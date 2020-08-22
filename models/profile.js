@@ -60,32 +60,32 @@ module.exports = (sequelize, DataTypes) => {
         Profile.hasMany(models.SocialLink, {
             onDelete: 'CASCADE'       
         });
-        //Social Link
+        //Attachment
         Profile.hasMany(models.Attachment, {
             onDelete: 'CASCADE'       
         });
         
         //Profile-SavedCandidate
-        Profile.belongsToMany(models.Recruiters, {
+        Profile.belongsToMany(models.Recruiter, {
             through: 'SavedCandidate',
             onDelete: 'CASCADE'
         });
 
         //Profile-InvitedCandidate
-        Profile.belongsToMany(models.Recruiters, {
+        Profile.belongsToMany(models.Recruiter, {
             through: 'InvitedCandidate',
             onDelete: 'CASCADE'
         });
 
         //Saved Jobs
-        Profile.belongsToMany(models.Jobs, {
-            through: 'SavedJobs',
+        Profile.belongsToMany(models.Job, {
+            through: 'SavedJob',
             onDelete: 'CASCADE'
         });
 
         //Applied Jobs
-        Profile.belongsToMany(models.Jobs, {
-            through: 'AppliedJobs',
+        Profile.belongsToMany(models.Job, {
+            through: 'AppliedJob',
             onDelete: 'CASCADE'
         });
     };  

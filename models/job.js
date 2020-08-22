@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const Jobs = sequelize.define("Jobs", {
+    const Job = sequelize.define("Job", {
         title: {
             type: DataTypes.STRING
         },
@@ -19,24 +19,24 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     // define association here
-    Jobs.associate = models => {
+    Job.associate = models => {
         //jobs-recruiter
-        Jobs.belongsTo(models.Recruiters, {
+        Job.belongsTo(models.Recruiter, {
             foreignKey: {
                 allowNull: false
             }
         });
 
-        Jobs.belongsToMany(models.Profile, {
-            through: 'SavedJobs',
+        Job.belongsToMany(models.Profile, {
+            through: 'SavedJob',
             onDelete: 'CASCADE'
         });
 
-        Jobs.belongsToMany(models.Profile, {
-            through: 'AppliedJobs',
+        Job.belongsToMany(models.Profile, {
+            through: 'AppliedJob',
             onDelete: 'CASCADE'
         });
     };  
 
-  return Jobs;
+  return Job;
 };

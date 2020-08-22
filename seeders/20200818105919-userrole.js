@@ -11,9 +11,34 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('UserRole', [{
+    await queryInterface.bulkInsert('UserRole', 
+    [{
       RoleId: 3,
       UserId: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      RoleId: 3,
+      UserId: 2,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      RoleId: 3,
+      UserId: 3,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      RoleId: 2,
+      UserId: 4,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      RoleId: 2,
+      UserId: 5,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

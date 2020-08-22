@@ -11,7 +11,8 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Profiles', [{
+    await queryInterface.bulkInsert('Profiles', 
+    [{
       UserId: 1,
       name: "sad sad",
       city: "sad",
@@ -22,7 +23,31 @@ module.exports = {
       about: "about",
       createdAt: new Date(),
       updatedAt: new Date()
-    }], {});
+    },
+    {
+      UserId: 2,
+      name: "zxc zxc",
+      city: "zxc",
+      country: "zxc",
+      education: "SMA",
+      phoneNumber: "+6289012345678",
+      email: "demo@demo.com",
+      about: "about",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      UserId: 3,
+      name: "qwe qwe",
+      city: "qwe",
+      country: "qwe",
+      education: "SMA",
+      phoneNumber: "+6289012345678",
+      email: "demo@demo.com",
+      about: "about",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },], {});
   },
 
   down: async (queryInterface, Sequelize) => {

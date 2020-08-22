@@ -10,8 +10,13 @@ const certificate = require('./certificate');
 const achievement = require('./achievement');
 const sociallink = require('./sociallink');
 const attachment = require('./attachment');
-const recruiters = require('./recruiters');
-const jobs = require('./jobs');
+
+const recruiter = require('./recruiter');
+const job = require('./job');
+
+const savedjob = require('./savedjob');
+
+const savedcandidate = require('./savedcandidate');
 
 module.exports = {
   profile,
@@ -25,6 +30,8 @@ module.exports = {
   achievement,
   sociallink,
   attachment,
-  recruiters,
-  jobs
+  recruiter,
+  job,
+  savedjob,
+  savedcandidate
 };

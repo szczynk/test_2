@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         //user-recruiter
-        User.hasOne(models.Recruiters, {
+        User.hasOne(models.Recruiter, {
             onDelete: 'CASCADE'       
         });
     };  

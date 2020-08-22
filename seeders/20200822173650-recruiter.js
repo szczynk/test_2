@@ -11,34 +11,32 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Users', 
+    await queryInterface.bulkInsert('Recruiters', 
     [{
-      email: 'user1@user.com',
-      password: '123456',
+      UserId: 4,
+      name: "das das",
+      jobTitle: "das",
+      company: "das.inc",
+      city: "sad",
+      country: "sad",
+      phoneNumber: "+6289012345678",
+      website: "das.inc.com",
+      email: "das@das.com",
+      about: "about",
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
-      email: 'user2@user.com',
-      password: '123456',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      email: 'user3@user.com',
-      password: '123456',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      email: 'hunter1@hunter.com',
-      password: '123456',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-    {
-      email: 'hunter2@hunter.com',
-      password: '123456',
+      UserId: 5,
+      name: "rty rty",
+      jobTitle: "rty",
+      company: "rty.inc",
+      city: "rty",
+      country: "rty",
+      phoneNumber: "+6289012345678",
+      website: "rty.inc.com",
+      email: "rty@rty.com",
+      about: "about",
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
@@ -51,6 +49,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Users', null, {});
+    await queryInterface.bulkDelete('Recruiters', null, {});
   }
 };

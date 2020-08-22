@@ -9,6 +9,10 @@ lerna-debug.log*
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# package-lock.json dan README.md
+package-lock.json
+README.md
+
 # Runtime data
 pids
 *.pid

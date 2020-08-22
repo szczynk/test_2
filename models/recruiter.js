@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const Recruiters = sequelize.define("Recruiters", {
+    const Recruiter = sequelize.define("Recruiter", {
         name: {
             type: DataTypes.STRING
         },
@@ -34,30 +34,31 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     // define association here
-    Recruiters.associate = models => {
+    Recruiter.associate = models => {
         //recruiter-user
-        Recruiters.belongsTo(models.User, {
+        Recruiter.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }      
         });
+
         //recruiter-jobs
-        Recruiters.hasMany(models.Jobs, {
+        Recruiter.hasMany(models.Job, {
             onDelete: 'CASCADE'       
         });
 
         //recruiters-inviteprofile
-        Recruiters.belongsToMany(models.Profile, {
+        Recruiter.belongsToMany(models.Profile, {
             through: 'InvitedCandidate',
             onDelete: 'CASCADE'
         })
 
         //recruiters-savedprofile
-        Recruiters.belongsToMany(models.Profile, {
+        Recruiter.belongsToMany(models.Profile, {
             through: 'SavedCandidate',
             onDelete: 'CASCADE'
         })
     };  
 
-  return Recruiters;
+  return Recruiter;
 };
