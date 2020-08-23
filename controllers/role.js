@@ -53,7 +53,7 @@ module.exports = {
             message: 'Role Not Found',
           });
         }
-        User.findByPk(req.body.role_id).then((course) => {
+        User.findByPk(req.body.user_id).then((course) => {
           if (!course) {
             return res.status(404).send({
               message: 'User Not Found',

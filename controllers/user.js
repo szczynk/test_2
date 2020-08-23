@@ -44,9 +44,24 @@ module.exports = {
     return User
       .create({
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10)
+        password: bcrypt.hashSync(req.body.password, 10),
+        include: [{
+          model: Profile,
+        },
+        {
+          model: Role,
+        }]
       })
-      .then((user) => res.status(201).send(user))
+      .then((user) => {
+        if (req.body.isHunter == "true") {
+          user.setRoles([2])
+          return res.status(200).send(user);
+        }
+        else {
+          user.setRoles([3])
+          return res.status(200).send(user);
+        }
+      })
       .catch((error) => res.status(400).send(error));
   },
 
