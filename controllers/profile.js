@@ -8,6 +8,7 @@ const Certificate = require('../models').Certificate;
 const Achievement = require('../models').Achievement;
 const SocialLink = require('../models').SocialLink;
 const Attachment = require('../models').Attachment;
+const Job = require('../models').Job;
 
 
 module.exports = {
@@ -102,6 +103,20 @@ module.exports = {
       })
       .then((profile) => res.status(201).send(profile))
       .catch((error) => res.status(400).send(error));
+  },
+
+  applyJob(req, res) {
+    return Profile
+    .findByPk(req.params.id)
+    .then((profile) => {
+      Job
+      .findByPk(req.body.JobId)
+      .then((job) => {
+        profile.addJobRequest(job, { through: { status: "Pending" } } );
+        return res.status(200).send(profile);
+      })
+    })
+    .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {

@@ -20,13 +20,13 @@ module.exports = {
           model: Recruiter,
         }],
       })
-      .then((jobs) => {
-        if (!jobs) {
+      .then((job) => {
+        if (!job) {
           return res.status(404).send({
             message: 'Job Not Found',
           });
         }
-        return res.status(200).send(jobs);
+        return res.status(200).send(job);
       })
       .catch((error) => res.status(400).send(error));
   },
@@ -41,7 +41,7 @@ module.exports = {
         description: req.body.description,
         isActive: req.body.isActive
       })
-      .then((jobs) => res.status(201).send(jobs))
+      .then((job) => res.status(201).send(job))
       .catch((error) => res.status(400).send(error));
   },
 
@@ -52,8 +52,8 @@ module.exports = {
           model: Recruiter,
         }],
       })
-      .then(jobs => {
-        if (!jobs) {
+      .then(job => {
+        if (!job) {
           return res.status(404).send({
             message: 'Job Not Found',
           });
@@ -67,7 +67,7 @@ module.exports = {
             description: req.body.description,
             isActive: req.body.isActive
           })
-          .then(() => res.status(200).send(jobs))
+          .then(() => res.status(200).send(job))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
@@ -76,8 +76,8 @@ module.exports = {
   delete(req, res) {
     return Job
       .findByPk(req.params.id)
-      .then(jobs => {
-        if (!jobs) {
+      .then(job => {
+        if (!job) {
           return res.status(400).send({
             message: 'Job Not Found',
           });

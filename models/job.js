@@ -28,11 +28,13 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         Job.belongsToMany(models.Profile, {
+            as: 'SaveProfile',
             through: 'SavedJob',
             onDelete: 'CASCADE'
         });
 
         Job.belongsToMany(models.Profile, {
+            as: 'Applicant',
             through: 'AppliedJob',
             onDelete: 'CASCADE'
         });

@@ -49,12 +49,14 @@ module.exports = (sequelize, DataTypes) => {
 
         //recruiters-inviteprofile
         Recruiter.belongsToMany(models.Profile, {
+            as: 'InviteCandidate',
             through: 'InvitedCandidate',
             onDelete: 'CASCADE'
         })
 
         //recruiters-savedprofile
         Recruiter.belongsToMany(models.Profile, {
+            as: 'SaveCandidate',
             through: 'SavedCandidate',
             onDelete: 'CASCADE'
         })

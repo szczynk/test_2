@@ -18,8 +18,10 @@ const recruiterController = require('../controllers').recruiter;
 const jobController = require('../controllers').job;
 
 const savedjobController = require('../controllers').savedjob;
+const appliedjobController = require('../controllers').appliedjob;
 
 const savedcandidateController = require('../controllers').savedcandidate;
+const invitedcandidateController = require('../controllers').invitedcandidate;
 
 
 /* GET home page. */
@@ -31,6 +33,7 @@ router.get('/', function(req, res, next) {
 router.get('/api/profile', profileController.list);
 router.get('/api/profile/:id', profileController.getById);
 router.post('/api/profile', profileController.add);
+router.post('/api/profile/:id/applyJob', profileController.applyJob);
 router.put('/api/profile/:id', profileController.update);
 router.delete('/api/profile/:id', profileController.delete);
 
@@ -109,6 +112,7 @@ router.delete('/api/role/:id', roleController.delete);
 router.get('/api/recruiter', recruiterController.list);
 router.get('/api/recruiter/:id', recruiterController.getById);
 router.post('/api/recruiter', recruiterController.add);
+router.post('/api/recruiter/:id/inviteCandidate', recruiterController.inviteCandidate);
 router.put('/api/recruiter/:id', recruiterController.update);
 router.delete('/api/recruiter/:id', recruiterController.delete);
 
@@ -123,9 +127,19 @@ router.delete('/api/job/:id', jobController.delete);
 router.get('/api/savedjob/list/:ProfileId', savedjobController.list);
 router.get('/api/savedjob/count/:ProfileId', savedjobController.count);
 
-/*Saved Jobs Router */
+/*Applied Jobs Router */
+router.get('/api/appliedjob/list/:ProfileId', appliedjobController.list);
+router.get('/api/appliedjob/count/:ProfileId', appliedjobController.count);
+router.post('/api/appliedjob/applyProfile', appliedjobController.applyProfile);
+
+/*Saved Candidate Router */
 router.get('/api/savedcandidate/list/:RecruiterId', savedcandidateController.list);
 router.get('/api/savedcandidate/count/:RecruiterId', savedcandidateController.count);
+
+/*Invited Candidate Router */
+router.get('/api/invitedcandidate/list/:RecruiterId', invitedcandidateController.list);
+router.get('/api/invitedcandidate/count/:RecruiterId', invitedcandidateController.count);
+router.post('/api/invitedcandidate/applyInvitation', invitedcandidateController.applyInvitation);
 
 /* Advance Router */
 router.post('/api/role/add_user', roleController.addUser);

@@ -15,8 +15,11 @@ const recruiter = require('./recruiter');
 const job = require('./job');
 
 const savedjob = require('./savedjob');
+const appliedjob = require('./appliedjob');
 
 const savedcandidate = require('./savedcandidate');
+const invitedcandidate = require('./invitedcandidate');
+
 
 module.exports = {
   profile,
@@ -33,5 +36,7 @@ module.exports = {
   recruiter,
   job,
   savedjob,
-  savedcandidate
+  savedcandidate,
+  appliedjob,
+  invitedcandidate
 };

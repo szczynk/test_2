@@ -1,6 +1,8 @@
 const User = require('../models').User;
 const Job = require('../models').Job;
 const Recruiter = require('../models').Recruiter;
+const Profile = require('../models').Profile;
+
 
 module.exports = {
   list(req, res) {
@@ -27,13 +29,13 @@ module.exports = {
           model: Job
         }],
       })
-      .then((recruiters) => {
-        if (!recruiters) {
+      .then((recruiter) => {
+        if (!recruiter) {
           return res.status(404).send({
             message: 'Profile Not Found',
           });
         }
-        return res.status(200).send(recruiters);
+        return res.status(200).send(recruiter);
       })
       .catch((error) => res.status(400).send(error));
   },
@@ -53,8 +55,22 @@ module.exports = {
         email: req.body.email,
         about: req.body.about,
       })
-      .then((recruiters) => res.status(201).send(recruiters))
+      .then((recruiter) => res.status(201).send(recruiter))
       .catch((error) => res.status(400).send(error));
+  },
+
+  inviteCandidate(req, res) {
+    return Recruiter
+    .findByPk(req.params.id)
+    .then((recruiter) => {
+      Profile
+      .findByPk(req.body.ProfileId)
+      .then((profile) => {
+        recruiter.addInviteCandidate(profile, { through: { status: "Pending" } } );
+        return res.status(200).send(recruiter);
+      })
+    })
+    .catch((error) => res.status(400).send(error));
   },
 
   update(req, res) {
@@ -67,22 +83,22 @@ module.exports = {
           model: Job
         }],
       })
-      .then(recruiters => {
-        if (!recruiters) {
+      .then(recruiter => {
+        if (!recruiter) {
           return res.status(404).send({
             message: 'Profile Not Found',
           });
         }
-        return recruiters
+        return recruiter
           .update({
-            name: req.body.name || recruiters.name,
-            city: req.body.city || recruiters.city,
-            education: req.body.education || recruiters.education,
-            phoneNumber: req.body.phoneNumber || recruiters.phoneNumber,
-            email: req.body.email || recruiters.email,
-            about: req.body.about || recruiters.about
+            name: req.body.name || recruiter.name,
+            city: req.body.city || recruiter.city,
+            education: req.body.education || recruiter.education,
+            phoneNumber: req.body.phoneNumber || recruiter.phoneNumber,
+            email: req.body.email || recruiter.email,
+            about: req.body.about || recruiter.about
           })
-          .then(() => res.status(200).send(recruiters))
+          .then(() => res.status(200).send(recruiter))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
@@ -91,13 +107,13 @@ module.exports = {
   delete(req, res) {
     return Recruiter
       .findByPk(req.params.id)
-      .then(recruiters => {
-        if (!recruiters) {
+      .then(recruiter => {
+        if (!recruiter) {
           return res.status(400).send({
             message: 'Profile Not Found',
           });
         }
-        return recruiters
+        return recruiter
           .destroy()
           .then(() => res.status(204).send())
           .catch((error) => res.status(400).send(error));
