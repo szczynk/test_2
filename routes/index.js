@@ -34,7 +34,6 @@ router.get('/', function(req, res, next) {
 /* Profile Router */
 router.get('/api/profile', profileController.list);
 router.get('/api/profile/:id', profileController.getById);
-router.post('/api/profile', profileController.add);
 router.post('/api/profile/:id/applyJob', profileController.applyJob);
 router.put('/api/profile/:id', profileController.update);
 router.delete('/api/profile/:id', profileController.delete);
@@ -113,7 +112,6 @@ router.delete('/api/role/:id', roleController.delete);
 /* Recruiter Router */
 router.get('/api/recruiter', recruiterController.list);
 router.get('/api/recruiter/:id', recruiterController.getById);
-router.post('/api/recruiter', recruiterController.add);
 router.post('/api/recruiter/:id/inviteCandidate', recruiterController.inviteCandidate);
 router.put('/api/recruiter/:id', recruiterController.update);
 router.delete('/api/recruiter/:id', recruiterController.delete);

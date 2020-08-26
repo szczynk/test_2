@@ -54,11 +54,14 @@ module.exports = {
       })
       .then((user) => {
         if (req.body.isHunter == "true") {
+          user.createRecruiter()
           user.setRoles([2])
           return res.status(200).send(user);
         }
         else {
+          user.createProfile()
           user.setRoles([3])
+          // user.setRoles([3])
           return res.status(200).send(user);
         }
       })

@@ -12,5 +12,3 @@
 PS. bingung masalah query di AppliedJob dan InvitedCandidate karena ada kolom status 
 
 PSS. sudah ditambah bcrypt untuk register dan login tapi blom tambahin passport.js / token untuk universal register dan login
-
-PSSS.  blom ada .env karena blom ada secret_key or API_key

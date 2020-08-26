@@ -89,25 +89,6 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-  add(req, res) {
-    return Profile
-      .create({
-        UserId: req.body.UserId,
-        name: req.body.name,
-        city: req.body.city,
-        country: req.body.country,
-        latestCareer: req.body.latestCareer,
-        educationTag: req.body.educationTag,
-        experienceTag: req.body.experienceTag,
-        careerTag: req.body.careerTag,
-        phoneNumber: req.body.phoneNumber,
-        email: req.body.email,
-        about: req.body.about,
-      })
-      .then((profile) => res.status(201).send(profile))
-      .catch((error) => res.status(400).send(error));
-  },
-
   applyJob(req, res) {
     return Profile
     .findByPk(req.params.id)
@@ -171,7 +152,18 @@ module.exports = {
             email: req.body.email || profile.email,
             about: req.body.about || profile.about
           })
-          .then(() => res.status(200).send(profile))
+          .then(profile => {
+            profile.createWorkExperience()
+            profile.createOrgExperience()
+            profile.createEducation()
+            profile.createSkill()
+            profile.createCertificate()
+            profile.createAchievement()
+            profile.createSocialLink()
+            profile.createAttachment()
+            .then(() => res.status(200).send(profile))
+            .catch((error) => res.status(400).send(error));
+          })
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));

@@ -40,25 +40,6 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-  add(req, res) {
-    return Recruiter
-      .create({
-        UserId: req.body.UserId,
-        name: req.body.name,
-        jobTitle: req.body.jobTitle,
-        city: req.body.city,
-        country: req.body.country,
-        company: req.body.company,
-        phoneNumber: req.body.phoneNumber,
-        email: req.body.email,
-        website: req.body.website,
-        email: req.body.email,
-        about: req.body.about,
-      })
-      .then((recruiter) => res.status(201).send(recruiter))
-      .catch((error) => res.status(400).send(error));
-  },
-
   inviteCandidate(req, res) {
     return Recruiter
     .findByPk(req.params.id)
