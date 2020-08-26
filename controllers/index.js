@@ -20,6 +20,8 @@ const appliedjob = require('./appliedjob');
 const savedcandidate = require('./savedcandidate');
 const invitedcandidate = require('./invitedcandidate');
 
+const profiletag = require('./profiletag');
+const jobtag = require('./jobtag');
 
 module.exports = {
   profile,
@@ -37,6 +39,8 @@ module.exports = {
   job,
   savedjob,
   savedcandidate,
+  profiletag,
+  jobtag,
   appliedjob,
   invitedcandidate
 };

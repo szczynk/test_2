@@ -10,7 +10,16 @@ module.exports = (sequelize, DataTypes) => {
         country: {
             type: DataTypes.STRING
         },
-        education: {
+        latestCareer: {
+            type: DataTypes.STRING
+        },
+        educationTag: {
+            type: DataTypes.STRING
+        },
+        experienceTag: {
+            type: DataTypes.STRING
+        },
+        careerTag: {
             type: DataTypes.STRING
         },
         phoneNumber: {

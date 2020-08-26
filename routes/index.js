@@ -23,6 +23,8 @@ const appliedjobController = require('../controllers').appliedjob;
 const savedcandidateController = require('../controllers').savedcandidate;
 const invitedcandidateController = require('../controllers').invitedcandidate;
 
+const profiletagController = require('../controllers').profiletag;
+const jobtagController = require('../controllers').jobtag;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -140,6 +142,20 @@ router.get('/api/savedcandidate/count/:RecruiterId', savedcandidateController.co
 router.get('/api/invitedcandidate/list/:RecruiterId', invitedcandidateController.list);
 router.get('/api/invitedcandidate/count/:RecruiterId', invitedcandidateController.count);
 router.post('/api/invitedcandidate/applyInvitation', invitedcandidateController.applyInvitation);
+
+
+/*Profile Tag Router */
+router.get('/api/profiletag/listcareer', profiletagController.listcareer);
+router.get('/api/profiletag/listlocation', profiletagController.listlocation);
+router.get('/api/profiletag/listeducation', profiletagController.listeducation);
+router.get('/api/profiletag/listexperience', profiletagController.listexperience);
+
+/*Job Tag Router */
+router.get('/api/jobtag/listcareer', jobtagController.listcareer);
+router.get('/api/jobtag/listlocation', jobtagController.listlocation);
+router.get('/api/jobtag/listeducation', jobtagController.listeducation);
+router.get('/api/jobtag/listexperience', jobtagController.listexperience);
+router.get('/api/jobtag/listsalary', jobtagController.listsalary);
 
 /* Advance Router */
 router.post('/api/role/add_user', roleController.addUser);

@@ -96,7 +96,10 @@ module.exports = {
         name: req.body.name,
         city: req.body.city,
         country: req.body.country,
-        education: req.body.education,
+        latestCareer: req.body.latestCareer,
+        educationTag: req.body.educationTag,
+        experienceTag: req.body.experienceTag,
+        careerTag: req.body.careerTag,
         phoneNumber: req.body.phoneNumber,
         email: req.body.email,
         about: req.body.about,
@@ -160,7 +163,10 @@ module.exports = {
           .update({
             name: req.body.name || profile.name,
             city: req.body.city || profile.city,
-            education: req.body.education || profile.education,
+            latestCareer: req.body.latestCareer || profile.latestCareer,
+            educationTag: req.body.educationTag || profile.educationTag,
+            experienceTag: req.body.experienceTag || profile.experienceTag,
+            careerTag: req.body.careerTag || profile.careerTag,
             phoneNumber: req.body.phoneNumber || profile.phoneNumber,
             email: req.body.email || profile.email,
             about: req.body.about || profile.about
