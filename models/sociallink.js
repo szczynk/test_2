@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const SocialLink = sequelize.define("SocialLink", {
+        ProfileId: {
+            type: DataTypes.INTEGER
+        },
         title: {
             type: DataTypes.STRING
         },

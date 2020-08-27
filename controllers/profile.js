@@ -152,18 +152,7 @@ module.exports = {
             email: req.body.email || profile.email,
             about: req.body.about || profile.about
           })
-          .then(profile => {
-            profile.createWorkExperience()
-            profile.createOrgExperience()
-            profile.createEducation()
-            profile.createSkill()
-            profile.createCertificate()
-            profile.createAchievement()
-            profile.createSocialLink()
-            profile.createAttachment()
-            .then(() => res.status(200).send(profile))
-            .catch((error) => res.status(400).send(error));
-          })
+          .then(profile => res.status(200).send(profile))
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));

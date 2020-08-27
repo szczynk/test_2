@@ -12,19 +12,13 @@ module.exports = {
      * }], {});
     */
     await queryInterface.bulkInsert('Roles', [{
-        role_name: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date()
+        role_name: 'admin'
       },
       {
-        role_name: 'hunter',
-        createdAt: new Date(),
-        updatedAt: new Date()
+        role_name: 'hunter'
       },
       {
-        role_name: 'user',
-        createdAt: new Date(),
-        updatedAt: new Date()
+        role_name: 'user'
       }], {});
   },
 

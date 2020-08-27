@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const WorkExperience = sequelize.define("WorkExperience", {
+        ProfileId: {
+            type: DataTypes.INTEGER
+        },
         title: {
             type: DataTypes.STRING
         },

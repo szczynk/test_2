@@ -1,4 +1,5 @@
 'use strict';
+var bcrypt = require("bcrypt");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -14,31 +15,31 @@ module.exports = {
     await queryInterface.bulkInsert('Users', 
     [{
       email: 'user1@user.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       email: 'user2@user.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       email: 'user3@user.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       email: 'hunter1@hunter.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
       createdAt: new Date(),
       updatedAt: new Date()
     },
     {
       email: 'hunter2@hunter.com',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

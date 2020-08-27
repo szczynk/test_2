@@ -1,7 +1,21 @@
 const User = require('../models').User;
-const Profile = require('../models').Profile;
 const Role = require('../models').Role;
 const UserRole = require('../models').UserRole;
+
+const Profile = require('../models').Profile;
+const WorkExperience = require('../models').WorkExperience;
+const OrgExperience = require('../models').OrgExperience;
+const Education = require('../models').Education;
+const Skill = require('../models').Skill;
+const Certificate = require('../models').Certificate;
+const Achievement = require('../models').Achievement;
+const SocialLink = require('../models').SocialLink;
+const Attachment = require('../models').Attachment;
+
+const Recruiter = require('../models').Recruiter;
+const Job = require('../models').Job;
+
+
 var bcrypt = require("bcrypt");
 
 module.exports = {
@@ -10,6 +24,9 @@ module.exports = {
       .findAll({
         include: [{
           model: Profile,
+        },
+        {
+          model: Recruiter,
         },
         {
           model: Role,
@@ -24,6 +41,9 @@ module.exports = {
       .findByPk(req.params.id, {
         include: [{
           model: Profile,
+        },
+        {
+          model: Recruiter,
         },
         {
           model: Role,
@@ -61,7 +81,6 @@ module.exports = {
         else {
           user.createProfile()
           user.setRoles([3])
-          // user.setRoles([3])
           return res.status(200).send(user);
         }
       })
@@ -75,9 +94,6 @@ module.exports = {
           email: req.body.email
         },
         include: [{
-          model: Profile,
-        },
-        {
           model: Role,
         }]
       })
@@ -99,7 +115,65 @@ module.exports = {
           });
         };
 
-        return res.status(200).send(user);
+        // res.status(200).send(user)
+
+        UserRole
+        .findOne({
+          where:{ 
+            UserId: user.id
+          }
+        })
+        .then((userrole) => {
+          console.log(userrole.RoleId)
+          if (userrole.RoleId == 2) {
+            user
+            .getRecruiter({
+              where: {
+                UserId: user.id
+              },
+              include: [{
+                model: Job,
+              }]
+            })
+            .then((recruiter) => res.status(200).send(recruiter))
+          }
+          else {
+            user
+            .getProfile({
+              where: {
+                UserId: user.id
+              },
+              include: [{
+                model: User,
+              },
+              {
+                model: WorkExperience
+              },
+              {
+                model: OrgExperience
+              },
+              {
+                model: Education
+              },
+              {
+                model: Skill
+              },
+              {
+                model: Certificate
+              },
+              {
+                model: Achievement
+              },
+              {
+                model: SocialLink
+              },
+              {
+                model: Attachment
+              }],
+            })
+            .then((profile) => res.status(200).send(profile))
+          }
+        })
       })
       .catch((error) => res.status(400).send(error));
   },

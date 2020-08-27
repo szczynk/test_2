@@ -28,7 +28,9 @@ app.use('/users', usersRouter);
 // db.sequelize.sync({force: true}).then(() => {
 //   console.log('Done Drop and Resync with { force: true }');
 // });
-db.sequelize.sync();
+db.sequelize.sync().then(() => {
+  console.log('Done Resync');
+});
 
 
 

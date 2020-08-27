@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('UserRole', 
+    await queryInterface.bulkInsert('UserRoles', 
     [{
       RoleId: 3,
       UserId: 1,
@@ -51,6 +51,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('UserRole', null, {});
+    await queryInterface.bulkDelete('UserRoles', null, {});
   }
 };

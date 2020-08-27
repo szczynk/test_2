@@ -1,6 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const Attachment = sequelize.define("Attachment", {
+        ProfileId: {
+            type: DataTypes.INTEGER
+        },
         name: {
             type: DataTypes.STRING
         },
