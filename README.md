@@ -9,6 +9,6 @@
 6. terminal -> `npm run dev`
 7. jika ingin menggunakan seeder maka gunakan terminal baru -> `npx sequelize db:seed:all` dan password sudah di-hash alias bisa demo untuk login/register
 
-PS. bingung masalah query di AppliedJob dan InvitedCandidate karena ada kolom status 
+PS. auth belom ada 
 
 PSS. sudah ditambah bcrypt untuk register dan login tapi blom tambahin passport.js / token untuk universal register dan login
